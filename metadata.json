@@ -1,0 +1,7 @@
+{
+  "name": "RupayX",
+  "description": "Next-gen fintech dashboard for P2P transactions and wallet management.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
