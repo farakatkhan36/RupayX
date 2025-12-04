@@ -1,3 +1,5 @@
+
+
 export enum View {
   LOGIN = 'LOGIN',
   VERIFY = 'VERIFY',
@@ -7,6 +9,8 @@ export enum View {
   SELL = 'SELL',
   BILL = 'BILL',
   HELP = 'HELP',
+  PROFILE = 'PROFILE',
+  REFER = 'REFER', // Added REFER
   // Admin Views
   ADMIN_LOGIN = 'ADMIN_LOGIN',
   ADMIN_HOME = 'ADMIN_HOME',
@@ -33,11 +37,19 @@ export interface Transaction {
   id: string;
   type: TransactionType;
   amount: number;
+  commission?: number;
   date: string;
   status: TransactionStatus;
-  details?: string; // UTR or UPI ID
-  screenshot?: string; // URL or name
+  details?: string;
+  screenshot?: string;
   userEmail: string;
+  taskTitle?: string;
+}
+
+export interface DepositTask {
+  id: string;
+  title: string;
+  amount: number;
 }
 
 export interface UpiAccount {
@@ -47,10 +59,14 @@ export interface UpiAccount {
 }
 
 export interface User {
+  uid: string;
   email: string;
+  password?: string;
   balance: number;
   isBanned: boolean;
   joinedDate: string;
+  referralCode?: string; // Unique code for this user
+  referredBy?: string;   // Code of the person who referred them
 }
 
 export enum UpiApp {

@@ -23,10 +23,11 @@ export const Layout: React.FC<LayoutProps> = ({
 }) => {
   return (
     <div className="min-h-screen bg-slate-950 text-white flex justify-center">
-      <div className="w-full max-w-md bg-slate-950 min-h-screen flex flex-col shadow-2xl relative">
+      {/* Updated max-width to 430px for iPhone 16 Pro Max dimensions */}
+      <div className="w-full max-w-[430px] bg-slate-950 min-h-screen flex flex-col shadow-2xl relative">
         {/* Header */}
         {isAuthenticated && (
-          <header className="sticky top-0 z-50 bg-slate-950/90 backdrop-blur-md border-b border-slate-800 p-4 flex items-center justify-between">
+          <header className="sticky top-0 z-50 bg-slate-950/90 backdrop-blur-md border-b border-slate-800 p-4 pt-safe-top flex items-center justify-between">
             <div className="flex items-center gap-2">
               {currentView !== View.HOME && onBack && (
                 <button 
@@ -70,6 +71,10 @@ export const Layout: React.FC<LayoutProps> = ({
           }
           .animate-fadeIn {
             animation: fadeIn 0.3s ease-out forwards;
+          }
+          /* Safe area support for iPhone notch/home indicator */
+          .pt-safe-top {
+            padding-top: env(safe-area-inset-top);
           }
         `}</style>
       </div>
